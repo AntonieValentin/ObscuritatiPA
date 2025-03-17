@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool divideArray(vector<int>& nums) {
+        __int128 a = 0;
+        __int128 b = 0;
+        __int128 c = 0;
+        __int128 d = 0;
+
+        for (int i = 0; i < nums.size(); i++){
+            if (nums[i] >= 1 && nums[i] <= 127)
+                a = a xor (static_cast<__int128>(1) << nums[i]); 
+            else if (nums[i] >= 128 && nums[i] <= 255)
+                b = b xor (static_cast<__int128>(1) << (nums[i] - 128)); 
+            else if (nums[i] >= 256 && nums[i] <= 383)
+                c = c xor (static_cast<__int128>(1) << (nums[i] - 256)); 
+            else
+                d = d xor (static_cast<__int128>(1) << (nums[i] - 384)); 
+        }
+
+        if (a == 0 && b == 0 && c == 0 && d == 0)
+            return true;
+        else
+            return false;
+    }
+};
